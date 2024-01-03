@@ -1,0 +1,56 @@
+iMat/
+|-- start.py
+|-- data/
+|   |-- __init__.py
+|   |-- DataProvider.py
+|   |-- HistoricalData.py
+|   |-- RealTimeData.py
+|   |-- database.py
+|-- strategies/	
+|   |-- __init__.py
+|   |-- StrategyBase.py
+|   |-- MeanReversion.py
+|   |-- TrendFollowing.py
+|-- execution/
+|   |-- __init__.py
+|   |-- OrderManager.py
+|   |-- BrokerInterface.py
+|   |-- PortfolioManager.py
+|-- indicators/
+|   |-- __init__.py
+|   |-- MovingAverage.py
+|   |-- RSI.py
+|   |-- TechnicalAnalysis.py
+|-- ui/
+|   |-- __init__.py
+|   |-- CommandLineInterface.py
+|   |-- WebInterface/
+|       |-- __init__.py
+|       |-- ...
+|   |-- ChartingTools.py
+|-- utils/
+|   |-- __init__.py
+|   |-- Logging.py
+|   |-- ConfigParser.py
+|   |-- Helpers.py
+|-- tests/
+|   |-- __init__.py
+|   |-- test_DataProvider.py
+|   |-- test_MeanReversionStrategy.py
+|   |-- ...
+|-- accounting/
+|   |-- __init__.py
+|   |-- AccountManager.py
+|   |-- TransactionManager.py
+|-- users/
+|   |-- __init__.py
+|   |-- UserManager.py
+|   |-- UserInterface.py
+|-- config/
+|   |-- __init__.py
+|   |-- ...
+|-- docs/
+|   |-- __init__.py
+|   |-- ...
+|-- README.md
+|-- requirements.txt
