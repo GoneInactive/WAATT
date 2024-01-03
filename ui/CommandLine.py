@@ -1,4 +1,20 @@
+import pandas as pd
+
 from users.UserManager import UserManager
+from utils.DataHelper import DataHelper
+
+from Trader.Terminal import Terminal
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class MethodHandler:
     def __init__(self):
@@ -7,14 +23,33 @@ class MethodHandler:
 
     def help_txt(self):
         """Implementation for method1."""
-        with open('ui/Data/help.txt','r') as f:
-            data = f.readlines()
-        for d in data:
-            print(d)
+        # with open('ui/Data/help.txt','r') as f:
+        #     data = f.readlines()
+        # for d in data:
+        #     print(d)
+        help_commands = pd.read_csv('ui/Data/help.csv', index_col=0)
+        help_commands.style.set_table_styles([{
+            'selector': 'th',
+            'props': [('text-align', 'left')]
+        }, {
+            'selector': 'td',
+            'props': [('text-align', 'left')]
+        }])
+
+        # Print the styled DataFrame
+        print(help_commands)
+    
+    
+    def vers(self):
+        ver = current_version = DataHelper().read_json(path='config/settings.json',return_type='Dict')['Version']
+        print(f'Version: {ver}') ### It aint clean but it's honest work
 
     def version(self):
         """Implementation for method2."""
         print('Version Hella Beta')
+
+    def enter_terminal(self):
+        Terminal().command_line()
 
 
 class CommandLineInterface:
@@ -29,7 +64,10 @@ class CommandLineInterface:
 
         self.methods_mapping = {
             'help': self.method_handler.help_txt,
-            'version': self.method_handler.version,
+            'version': self.method_handler.vers,
+            'trader': self.method_handler.enter_terminal,
+            'terminal;': self.method_handler.enter_terminal,
+            'trade': self.method_handler.enter_terminal
             # Add more methods as needed
         }
 
@@ -49,8 +87,9 @@ class CommandLineInterface:
         """
         running = True
         while running:
-            user_input = input("\nEnter a command (type 'exit' to quit): ").strip()
-            if user_input.lower() == 'exit':
+            print()
+            user_input = input("\nAdmin > ").strip()
+            if user_input.lower() == 'exit' or user_input.lower() == 'quit':
                 print("\nExiting the program. Goodbye!")
                 running = False
             else:
