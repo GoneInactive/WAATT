@@ -1,6 +1,12 @@
-------------{HELP}------------
+[-----------------------------{ COMMANDS }------------------------------]
 1. Administrative Commands
-          - help
-          - version
+          - help: View a list of commands.
+          - version: View the current WAATT version running.
+          - exit: Quit the program.
+          - quit: Quit the program.
+
 2. Portfolio/Accounting
+          - Positions: View all the postions in the portfolio
+
 3. Trading Terminal
+          - Terminal: Opens the Trading Terminal

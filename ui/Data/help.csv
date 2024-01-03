@@ -1,0 +1,8 @@
+Category,Command,Description
+Administrative Commands ,help,View a list of commands.
+Administrative Commands ,version,View the current WAATT version running.
+Administrative Commands ,exit,Quit the program.
+Administrative Commands ,quit,Quit the program.
+Portfolio/Accounting ,Positions,View all the positions in the portfolio.
+Trading Terminal ,Terminal,Opens the Trading Terminal.
+Trading Terminal ,Trader,Opens the Trading Terminal.
