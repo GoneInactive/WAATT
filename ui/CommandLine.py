@@ -1,7 +1,12 @@
 import pandas as pd
 
+import os
+import sys
+
 from users.UserManager import UserManager
 from utils.DataHelper import DataHelper
+from utils.StartUp import StartUp
+from Portfolio.PortfolioManager import PortfolioManager
 
 from Trader.Terminal import Terminal
 
@@ -21,12 +26,15 @@ class MethodHandler:
         """Initialize the MethodHandler."""
         pass
 
+    def reset_data(self):
+        if input(f'{bcolors.WARNING}Are you sure? (Y or N)? This will ERASE all data!\n{bcolors.OKCYAN}').upper() == 'Y':
+            StartUp()._delete_files()
+            print('Done.')
+            exit()
+
+
     def help_txt(self):
         """Implementation for method1."""
-        # with open('ui/Data/help.txt','r') as f:
-        #     data = f.readlines()
-        # for d in data:
-        #     print(d)
         help_commands = pd.read_csv('ui/Data/help.csv', index_col=0)
         help_commands.style.set_table_styles([{
             'selector': 'th',
@@ -49,7 +57,28 @@ class MethodHandler:
         print('Version Hella Beta')
 
     def enter_terminal(self):
-        Terminal().command_line()
+        try:
+            Terminal().command_line()
+        except Exception as e:
+            print(e)
+
+    def restart_program(self):
+        """
+        Restarts the current Python script.
+
+        This function uses os.execl to restart the script with the same Python interpreter
+        and command-line arguments.
+
+        Note: Restarting scripts is not a common practice and should be used carefully.
+        """
+        print('\033[0;37m!RESTARTING!')
+        for _ in range(100):
+            print("")
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
+    def get_positions(self):
+        PortfolioManager().positions()
 
 
 class CommandLineInterface:
@@ -67,8 +96,10 @@ class CommandLineInterface:
             'version': self.method_handler.vers,
             'trader': self.method_handler.enter_terminal,
             'terminal;': self.method_handler.enter_terminal,
-            'trade': self.method_handler.enter_terminal
-            # Add more methods as needed
+            'trade': self.method_handler.enter_terminal,
+            'reset': self.method_handler.reset_data,
+            'restart': self.method_handler.restart_program,
+            'pos': self.method_handler.get_positions,
         }
 
     def __call__(self, *args, **kwargs):

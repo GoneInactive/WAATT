@@ -1,8 +1,23 @@
+ , , 
 Category,Command,Description
-Administrative Commands ,help,View a list of commands.
-Administrative Commands ,version,View the current WAATT version running.
-Administrative Commands ,exit,Quit the program.
-Administrative Commands ,quit,Quit the program.
-Portfolio/Accounting ,Positions,View all the positions in the portfolio.
-Trading Terminal ,Terminal,Opens the Trading Terminal.
-Trading Terminal ,Trader,Opens the Trading Terminal.
+ , , 
+Administrative Commands ,help ,View a list of commands.
+Administrative Commands ,version ,View the current WAATT version running.
+Administrative Commands ,exit ,Quit the program.
+Administrative Commands ,quit ,Quit the program.
+Administrative Commands ,reset ,Reset all data files. (Will erase all data)
+Administrative Commands ,restart ,Restarts the program
+Administrative Commands ,test_update ,Tests all functionality of the program.
+ , , 
+Portfolio/Accounting ,Positions ,View all the positions in the portfolio.
+Portfolio/Accoutning ,Portfolio[Not Fully Developed] ,View a summmarized Portfolio.
+ , , 
+Investor Accounts ,list_accounts ,View all the *investor* accounts.
+Investor Accounts ,create_account ,Add an investor account.
+Investor Accounts ,del_account ,Remove an investor account.
+ , , 
+Trading Terminal ,Terminal ,Opens the Trading Terminal.
+Trading Terminal ,Trader ,Opens the Trading Terminal.
+Trading Terminal ,exit ,Exit the Trading Terminal.
+Trading Terminal ,get_quote ,Get the last traded price for a stock.
+Trading Terminal ,get_book ,Get the book for a stock.

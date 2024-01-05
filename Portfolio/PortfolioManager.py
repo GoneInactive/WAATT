@@ -3,7 +3,7 @@ import os
 import yfinance as yf
 import pandas as pd
 import time
-from utils import DataHelper
+from utils.DataHelper import DataHelper
 
 dh = DataHelper()
 
@@ -44,7 +44,7 @@ class PortfolioManager:
 
 
 
-   def positions(self):
+    def positions(self):
         """
         Display the current positions.
 
@@ -89,4 +89,3 @@ class PortfolioManager:
 
 
 
-    
