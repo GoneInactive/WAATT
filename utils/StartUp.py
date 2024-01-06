@@ -1,5 +1,8 @@
 import os
 import json
+import subprocess
+import sys
+
 import robin_stocks.robinhood as rs
 
 class StartUp:
@@ -116,3 +119,9 @@ class StartUp:
             os.remove(self.robinhood_keys_file_path)
         except FileNotFoundError:
             pass
+        
+#     import subprocess
+# import sys
+
+# def install(package):
+#     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
