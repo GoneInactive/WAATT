@@ -25,8 +25,6 @@ def main():
     print('Starting Startup Proccesses...')
     try:
         su = StartUp()
-        # su.initialize_robinhood_keys() 
-        # su.test_robinhood_keys()
         su.log_startup()
         print("Task 2. Complete")
     except Exception as e:
