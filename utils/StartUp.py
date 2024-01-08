@@ -124,6 +124,10 @@ class StartUp:
             os.remove('Portfolio/data/positions.csv')
         except FileNotFoundError:
             pass
+        try:
+            os.remove('Portfolio/data/portfolio.csv')
+        except FileNotFoundError:
+            pass
 
     
     def create_portfolio_files(self):
