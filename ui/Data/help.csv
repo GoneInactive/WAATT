@@ -11,6 +11,8 @@ Administrative Commands ,test_update ,Tests all functionality of the program.
  , , 
 Portfolio/Accounting ,Positions ,View all the positions in the portfolio.
 Portfolio/Accoutning ,Portfolio[Not Fully Developed] ,View a summmarized Portfolio.
+Portfolio/Accounting ,add_positon ,Add a position
+Portfolio/Accounting ,remove_positio ,Remove a position
  , , 
 Investor Accounts ,list_accounts ,View all the *investor* accounts.
 Investor Accounts ,create_account ,Add an investor account.

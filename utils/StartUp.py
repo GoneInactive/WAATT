@@ -31,7 +31,7 @@ class StartUp:
                     current_value = int(file.read())
                 except ValueError:
                     # Handle the case where the file contains non-integer data
-                    raise exception("Error: entries.txt contains non-integer data.")
+                    raise Exception("Error: entries.txt contains non-integer data.")
 
             new_value = current_value + 1
 
@@ -119,6 +119,20 @@ class StartUp:
             os.remove(self.robinhood_keys_file_path)
         except FileNotFoundError:
             pass
+
+        try:
+            os.remove('Portfolio/data/positions.csv')
+        except FileNotFoundError:
+            pass
+
+    
+    def create_portfolio_files(self):
+        if not os.path.exists(self.entries_file_path):
+            with open('Portfolio/Data/positions.csv','w') as f:
+                return
+        
+        return
+
         
 #     import subprocess
 # import sys

@@ -21,6 +21,9 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
+pm = PortfolioManager()
+
 class MethodHandler:
     def __init__(self):
         """Initialize the MethodHandler."""
@@ -78,7 +81,16 @@ class MethodHandler:
         os.execl(python, python, *sys.argv)
 
     def get_positions(self):
-        PortfolioManager().positions()
+        pm.print_positions()
+
+
+    def add_position(self):
+        pm.add_position(input('Ticker: '),input('Quantity (Quantity > 0): '),input('Purchase Price ($ > 0): $'))
+    
+    def remove_position(self):
+        pm.remove_position(input('Ticker: '),input('Quantity (Quantity < 0): '),input('Sold Price ($ < 0): $'))
+        
+
 
 
 class CommandLineInterface:
@@ -99,7 +111,10 @@ class CommandLineInterface:
             'trade': self.method_handler.enter_terminal,
             'reset': self.method_handler.reset_data,
             'restart': self.method_handler.restart_program,
+            'positions': self.method_handler.get_positions,
             'pos': self.method_handler.get_positions,
+            'add_position': self.method_handler.add_position,
+            'remove_positon': self.method_handler.remove_position,
         }
 
     def __call__(self, *args, **kwargs):

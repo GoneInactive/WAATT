@@ -26,6 +26,7 @@ def main():
     try:
         su = StartUp()
         su.log_startup()
+        su.create_portfolio_files()
         print("Task 2. Complete")
     except Exception as e:
         raise Exception(f'!ERROR! Issue during startup. Cannot Continue: {e}')
