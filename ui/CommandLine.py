@@ -87,11 +87,6 @@ class MethodHandler:
     def add_position(self):
         pm.add_position(input('Ticker: '),input('Quantity (Quantity > 0): '),input('Purchase Price ($ > 0): $'))
     
-    def remove_position(self):
-        pm.remove_position(input('Ticker: '),input('Quantity (Quantity < 0): '),input('Sold Price ($ < 0): $'))
-        
-
-
 
 class CommandLineInterface:
     def __init__(self, method_handler=None):
@@ -114,7 +109,7 @@ class CommandLineInterface:
             'positions': self.method_handler.get_positions,
             'pos': self.method_handler.get_positions,
             'add_position': self.method_handler.add_position,
-            'remove_positon': self.method_handler.remove_position,
+            'push': self.method_handler.reset_data
         }
 
     def __call__(self, *args, **kwargs):
