@@ -1,2 +1,2 @@
 # WAATT
- Watts Accounting And Trading Tool
+ What Another Accounting & Trading Tool?
