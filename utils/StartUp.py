@@ -31,7 +31,7 @@ class StartUp:
                     current_value = int(file.read())
                 except ValueError:
                     # Handle the case where the file contains non-integer data
-                    raise exception("Error: entries.txt contains non-integer data.")
+                    raise Exception("Error: entries.txt contains non-integer data.")
 
             new_value = current_value + 1
 
@@ -110,18 +110,24 @@ class StartUp:
         """
         Delete both the entries.txt and robinhood_keys.json files.
         """
-        try:
-            os.remove(self.entries_file_path)
-        except FileNotFoundError:
-            pass
+        files_to_delete = [
+            self.entries_file_path,
+            self.robinhood_keys_file_path,
+            'Portfolio/data/positions.csv',
+            'Portfolio/data/portfolio.csv',
+            'Portfolio/data/trade_log.json'
+        ]
 
-        try:
-            os.remove(self.robinhood_keys_file_path)
-        except FileNotFoundError:
-            pass
+        for file_path in files_to_delete:
+            try:
+                os.remove(file_path)
+            except FileNotFoundError:
+                pass
+
+    
+    def create_portfolio_files(self):
+        if not os.path.exists(self.entries_file_path):
+            with open('Portfolio/Data/positions.csv','w') as f:
+                return
         
-#     import subprocess
-# import sys
-
-# def install(package):
-#     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        return
