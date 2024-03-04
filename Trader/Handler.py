@@ -1,7 +1,9 @@
+from Trader.Robin_Trader import Robin_Trader
+
 import yfinance as yf
 
 class bcolors:
-    HEADER = '\033[95m'
+    HEADER = '\033[95rm'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'
     OKGREEN = '\033[92m'
@@ -11,7 +13,6 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     MAGENTA = '\033[35m'
-
     LIGHT_YELLOW = '\033[93m'
     LIGHT_RED = '\033[101m'
     LIGHT_GREEN = '\033[102m'
@@ -40,6 +41,14 @@ class CommandHandler:
                 return round(finfo.last_price,2)
         except Exception as e:
             print(f'!ERROR! Trader/Handler.py --> CommandHandler.get_quote():{e}')
+
+
+    def robin_trade(self):
+        try:
+            rt = Robin_Trader()
+            rt.test_keys()
+        except Exception as e:
+            print(e)
         # try:
         #     # Fetch the data for the given ticker
         #     stock_data = yf.Ticker(input('Enter Ticker: '))

@@ -19,6 +19,7 @@ class Terminal:
         self.methods_mapping = {
             'test': self.command_handler.testing,
             'get_quote': self.command_handler.get_quote,
+            'robin_trader': self.command_handler.robin_trade,
         }
 
     def command_line(self,new_window = False,cmd_running = True):
