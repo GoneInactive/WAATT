@@ -20,6 +20,18 @@ class Terminal:
             'test': self.command_handler.testing,
             'get_quote': self.command_handler.get_quote,
             'robin_trader': self.command_handler.robin_trade,
+            'robin_bot': self.command_handler.robin_trade,
+            'rt': self.command_handler.robin_trade,
+            'restart': self.command_handler.restart_program,
+            'get_price': self.command_handler.get_price,
+            'get_balance': self.command_handler.get_balance,
+            'get_position': self.command_handler.get_balance,
+            'get_positions': self.command_handler.get_balance,
+            'pos': self.command_handler.get_balance,
+            'logout': self.command_handler.logout,
+            'buy': self.command_handler.buy,
+            'sell': self.command_handler.sell,
+            'cash': self.command_handler.cash,
         }
 
     def command_line(self,new_window = False,cmd_running = True):

@@ -9,6 +9,7 @@ from utils.StartUp import StartUp
 from Portfolio.PortfolioManager import PortfolioManager
 
 from Trader.Terminal import Terminal
+from Trader.Helper import Robin_Helper
 
 class bcolors:
     HEADER = '\033[95m'
@@ -32,7 +33,9 @@ class MethodHandler:
     def reset_data(self):
         if input(f'{bcolors.WARNING}Are you sure? (Y or N)? This will ERASE all data!\n{bcolors.OKCYAN}').upper() == 'Y':
             StartUp()._delete_files()
-            print('Done.')
+            rh = Robin_Helper()
+            rh.remove_keys()
+            print('Reset Complete.')
             exit()
 
 

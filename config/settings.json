@@ -1,5 +1,6 @@
 {
     "Version":"1.0.0 BETA",
     "Active":true,
-    "Key":"FHEJ#309#83E"
+    "Key":"FHEJ#309#83E",
+    "Debug-Mode": true
 }

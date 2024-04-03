@@ -3,6 +3,9 @@ import json
 import subprocess
 import sys
 
+from utils.DataHelper import DataHelper
+from Trader.Helper import Robin_Helper
+
 import robin_stocks.robinhood as rs
 
 class StartUp:
@@ -14,6 +17,7 @@ class StartUp:
         """
         self.entries_file_path = 'Data/log/entries.txt'
         self.robinhood_keys_file_path = 'Data/robinhood_keys.json'
+        self.debug_mode = DataHelper().read_json(path='config/settings.json',return_type='Dict')['Debug-Mode']
 
     def log_startup(self):
         """
@@ -37,12 +41,15 @@ class StartUp:
 
             with open(self.entries_file_path, 'w') as file:
                 file.write(str(new_value))
-            print(f"Program started. This is startup number: {new_value}")
+            if self.debug_mode:
+                print(f"Program started. This is startup number: {new_value}")
 
         else:
-            # If the file doesn't exist, create it with the value 1
+            ## Program Is Starting For First Time
             with open(self.entries_file_path, 'w') as file:
                 file.write('1')
+
+            Robin_Helper().program_setup()
 
             print("Program started for the first time. This is startup number: 1")
 
@@ -54,24 +61,25 @@ class StartUp:
         Checks if it's the first program startup. If it is, prompts the user to
         enter their Robinhood API keys and stores the data in a JSON file.
         """
-        if not os.path.exists(self.robinhood_keys_file_path):
-            print("Welcome! It looks like this is the first time you're starting the program.")
-            print("Please enter your Robinhood API keys.")
+        return
+        # if not os.path.exists(self.robinhood_keys_file_path):
+        #     print("Welcome! It looks like this is the first time you're starting the program.")
+        #     print("Please enter your Robinhood API keys.")
 
-            # Get user input for Robinhood API keys
-            client_id = input("Enter your Robinhood username (email): ")
-            client_secret = input("Enter your Robinhood password: ")
+        #     # Get user input for Robinhood API keys
+        #     client_id = input("Enter your Robinhood username (email): ")
+        #     client_secret = input("Enter your Robinhood password: ")
 
-            # Create a dictionary with the entered keys
-            robinhood_keys = {'client_id': client_id, 'client_secret': client_secret}
+        #     # Create a dictionary with the entered keys
+        #     robinhood_keys = {'client_id': client_id, 'client_secret': client_secret}
 
-            # Save the keys to a JSON file
-            with open(self.robinhood_keys_file_path, 'w') as file:
-                json.dump(robinhood_keys, file)
+        #     # Save the keys to a JSON file
+        #     with open(self.robinhood_keys_file_path, 'w') as file:
+        #         json.dump(robinhood_keys, file)
 
-            print("Robinhood API keys have been successfully saved.")
-        else:
-            print("Robinhood API keys are already set up.")
+        #     print("Robinhood API keys have been successfully saved.")
+        # else:
+        #     print("Robinhood API keys are already set up.")
 
     def test_robinhood_keys(self):
         """
@@ -80,31 +88,32 @@ class StartUp:
         If the keys are incorrect, raise an exception and delete both the
         entries.txt and robinhood_keys.json files.
         """
-        if not os.path.exists(self.robinhood_keys_file_path):
-            print("Robinhood API keys are not set up. Please run initialize_robinhood_keys first.")
-            return
+        return
+        # if not os.path.exists(self.robinhood_keys_file_path):
+        #     print("Robinhood API keys are not set up. Please run initialize_robinhood_keys first.")
+        #     return
 
-        # Load Robinhood API keys from the JSON file
-        with open(self.robinhood_keys_file_path, 'r') as file:
-            robinhood_keys = json.load(file)
+        # # Load Robinhood API keys from the JSON file
+        # with open(self.robinhood_keys_file_path, 'r') as file:
+        #     robinhood_keys = json.load(file)
 
-        rs.login(username=robinhood_keys['client_id'],
-        password=robinhood_keys['client_secret'],
-        expiresIn=86400,
-        by_sms=False)
+        # rs.login(username=robinhood_keys['client_id'],
+        # password=robinhood_keys['client_secret'],
+        # expiresIn=86400,
+        # by_sms=False)
 
-        print(robinhood_keys['client_id'],robinhood_keys['client_secret'])
-
-
-        print(rs.profiles.load_basic_profile())
+        # print(robinhood_keys['client_id'],robinhood_keys['client_secret'])
 
 
+        # print(rs.profiles.load_basic_profile())
 
-        print('Finished Test.')
+
+
+        # print('Finished Test.')
             
-        # # If keys are incorrect, raise an exception and delete files
-        # self._delete_files()
-        # raise Exception("Invalid Robinhood API keys. Files deleted.")
+        # # # If keys are incorrect, raise an exception and delete files
+        # # self._delete_files()
+        # # raise Exception("Invalid Robinhood API keys. Files deleted.")
 
     def _delete_files(self):
         """

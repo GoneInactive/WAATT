@@ -1,5 +1,6 @@
 from Trader.Robin_Trader import Robin_Trader
-
+import sys
+import os
 import yfinance as yf
 
 class bcolors:
@@ -21,11 +22,13 @@ class bcolors:
     DARK_GRAY = '\033[90m'
     LIGHT_GRAY = '\033[37m'
 
+    rt = Robin_Trader()
+
 
 class CommandHandler:
     def __init__(self):
         """Initialize the MethodHandler."""
-        pass
+        self.rt = Robin_Trader()
 
     def testing(self):
         print('Trading Terminal Test Complete. 1/1 Tasks Finished.')
@@ -45,33 +48,51 @@ class CommandHandler:
 
     def robin_trade(self):
         try:
-            rt = Robin_Trader()
-            rt.test_keys()
+            self.rt.test_keys()
         except Exception as e:
-            print(e)
-        # try:
-        #     # Fetch the data for the given ticker
-        #     stock_data = yf.Ticker(input('Enter Ticker: '))
-        #     quote = stock_data.info
+            print(f'!ERROR! Trader/Handler.py --> CommandHandler.rovbin_trade():{e}')
 
-        #     # Extract relevant information
-        #     symbol = quote.get('symbol', 'N/A')
-        #     name = quote.get('longName', 'N/A')
-        #     last_price = quote.get('lastPrice', 'N/A')
+    def get_price(self):
+        try:
+            self.rt.get_price()
+        except Exception as e:
+            print(f'!ERROR! Trader/Handler.py --> CommandHandler.get_price():{e}')
 
-        #     # Print the quote information
-        #     if return_type.upper() == 'TEXT':
-        #         print(f"Quote for {symbol} - {name}:")
-        #         print(f"Last Price: {last_price}")
-        #         return None
-            
-        #     return last_price
+    def get_balance(self):
+        try:
+            self.rt.get_balance()
+        except Exception as e:
+            print(f'!ERROR! Trader/Handler.py --> CommandHandler.get_balance():{e}')
 
-        #     # You can print more information as needed using the 'quote' dictionary
+    def logout(self):
+        try:
+            self.rt.log_out()
+        except Exception as e:
+            print(f'!ERROR! Trader/Handler.py --> CommandHandler.get_balance():{e}')
 
-        # except Exception as e:
-        #     print(f'!ERROR! Trader/Handler.py --> CommandHandler.get_quote():{e}')
+    def restart_program(self):
+        """
+        Restarts the current Python script.
 
+        This function uses os.execl to restart the script with the same Python interpreter
+        and command-line arguments.
+
+        Note: Restarting scripts is not a common practice and should be used carefully.
+        """
+        print('\033[0;37m!RESTARTING!')
+        for _ in range(100):
+            print("")
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
+    def buy(self):
+        self.rt.buy()
+
+    def sell(self):
+        self.rt.sell()
+
+    def cash(self):
+        self.rt.get_cash()
 
 if __name__ == "__main__":
     Terminal().command_line()
