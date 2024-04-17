@@ -23,10 +23,13 @@ class bcolors:
     LIGHT_GRAY = '\033[37m'
 
 class Robin_Trader:
-    def __init__(self,additional_keys=[]):
+    def __init__(self,additional_keys=[],debug_mode=False):
         try:
-            log_pickle = input('Log Pickle? (True/False): ')
-            log_pickle = bool(log_pickle)
+            if debug_mode:
+                log_pickle = input('Log Pickle? (True/False): ')
+                log_pickle = bool(log_pickle)
+            else:
+                log_pickle = True
             base_directory = 'Trader/keys/'
             self.keys_raw = ['robin_keys_one.json']+additional_keys
             self.keys = [base_directory+key for key in self.keys_raw]
@@ -84,7 +87,8 @@ class Robin_Trader:
                 ticker = pass_ticker
 
             if list(ticker)[0] == 'c' and list(ticker)[1] == '/':
-                print('Getting Crypto Price..')
+                if prnt:
+                    print('Getting Crypto Price..')
                 # print(ticker[-3:])
                 price_btc = rh.get_crypto_quote(ticker[-3:], 'mark_price')
                 # print(price_btc)
