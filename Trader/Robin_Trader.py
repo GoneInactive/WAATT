@@ -76,19 +76,26 @@ class Robin_Trader:
         location = 'Trader/strategy/'+strategy+'.py'
         ### Load strategy from /strategy directory
 
-
-    def get_price(self):
+    def get_price(self,pass_ticker=0,prnt=True):
         try:
-            ticker = input('Ticker: ')
+            if pass_ticker == 0:
+                ticker = input('Ticker: ')
+            else:
+                ticker = pass_ticker
+
             if list(ticker)[0] == 'c' and list(ticker)[1] == '/':
                 print('Getting Crypto Price..')
                 # print(ticker[-3:])
                 price_btc = rh.get_crypto_quote(ticker[-3:], 'mark_price')
                 # print(price_btc)
-                print(f'{bcolors.OKGREEN}{ticker[-3:]}: ${round(float(price_btc),2)} {bcolors.OKBLUE}')
+                if prnt:
+                    print(f'{bcolors.OKGREEN}{ticker[-3:]}: ${round(float(price_btc),2)} {bcolors.OKBLUE}')
+                return float(price_btc)
             else:
                 price = rh.stocks.get_latest_price(ticker, includeExtendedHours=False)
-                print(f'{bcolors.OKGREEN}{ticker}: ${round(float(price[0]),2)} {bcolors.OKBLUE}')
+                if prnt:
+                    print(f'{bcolors.OKGREEN}{ticker}: ${round(float(price[0]),2)} {bcolors.OKBLUE}')
+                return float(price[0]),2
         except Exception as e:
             print(f'!ERROR! Trader/Robin_Trader.py --> Robin_Trader.get_price():{e}')
     

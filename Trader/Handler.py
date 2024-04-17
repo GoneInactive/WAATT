@@ -1,4 +1,5 @@
 from Trader.Robin_Trader import Robin_Trader
+from Trader.strategies.Moving_Average import Moving_Average as MA
 import sys
 import os
 import yfinance as yf
@@ -93,6 +94,14 @@ class CommandHandler:
 
     def cash(self):
         self.rt.get_cash()
+
+
+    def start_strategy(self):
+        ### Test Robinhood Strategy
+        strategy = input('Enter strategy: ')
+        ma_strat = MA()
+        ma_strat.run_strategy()
+
 
 if __name__ == "__main__":
     Terminal().command_line()

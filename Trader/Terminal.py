@@ -32,6 +32,8 @@ class Terminal:
             'buy': self.command_handler.buy,
             'sell': self.command_handler.sell,
             'cash': self.command_handler.cash,
+            'start_strategy': self.command_handler.start_strategy,
+            'ma': self.command_handler.start_strategy,
         }
 
     def command_line(self,new_window = False,cmd_running = True):
