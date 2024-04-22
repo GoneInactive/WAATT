@@ -2,3 +2,4 @@ robin_stocks
 art
 yfinance
 pandas
+krakenio

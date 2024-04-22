@@ -102,6 +102,18 @@ class Robin_Trader:
                 return float(price[0]),2
         except Exception as e:
             print(f'!ERROR! Trader/Robin_Trader.py --> Robin_Trader.get_price():{e}')
+
+    
+    def get_crypto_book(self,ticker,prnt=True):
+        try:
+            book = [rh.get_crypto_quote(ticker, info='bid_price'),rh.get_crypto_quote(ticker, info='ask_price')]
+            if prnt:
+                print(f'{ticker} Book')
+                print(f'Bid: ${book[0]}')
+                print(f'Ask: ${book[1]}')
+            return book
+        except Exception as e:
+            print(f'!ERROR! Trader/Robin_Trader.py --> Robin_Trader.get_crypto_book():{e}')
     
     def get_balance(self):
         try:

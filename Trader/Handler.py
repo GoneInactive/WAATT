@@ -1,4 +1,4 @@
-from Trader.Robin_Trader import Robin_Trader
+from Trader.brokers.Robin_Trader import Robin_Trader
 from Trader.strategies.Moving_Average import Moving_Average as MA
 import sys
 import os
