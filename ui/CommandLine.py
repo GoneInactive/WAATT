@@ -11,6 +11,8 @@ from Portfolio.PortfolioManager import PortfolioManager
 from Trader.Terminal import Terminal
 from Trader.Helper import Robin_Helper
 
+from asset_builder.asset_builder import AssetBuilder
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -31,7 +33,7 @@ class MethodHandler:
         pass
 
     def reset_data(self):
-        if input(f'{bcolors.WARNING}Are you sure? (Y or N)? This will ERASE all data!\n{bcolors.OKCYAN}').upper() == 'Y':
+        if input(f'{bcolors.WARNING}Are you sure? (Y or N)? This will ERASE all data!\n{bcolors.OKGREEN}').upper() == 'Y':
             StartUp()._delete_files()
             rh = Robin_Helper()
             rh.remove_keys()
@@ -89,6 +91,10 @@ class MethodHandler:
 
     def add_position(self):
         pm.add_position(input('Ticker: '),input('Quantity (Quantity > 0): '),input('Purchase Price ($ > 0): $'))
+
+
+    def builder(self):
+        AssetBuilder().__run__()
     
 
 class CommandLineInterface:
@@ -112,7 +118,8 @@ class CommandLineInterface:
             'positions': self.method_handler.get_positions,
             'pos': self.method_handler.get_positions,
             'add_position': self.method_handler.add_position,
-            'push': self.method_handler.reset_data
+            'push': self.method_handler.reset_data,
+            'asset_builder': self.method_handler.builder,
         }
 
     def __call__(self, *args, **kwargs):

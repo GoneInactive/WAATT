@@ -38,7 +38,7 @@ def main():
     current_version = DataHelper().read_json(path='config/settings.json',return_type='Dict')['Version']
     print(text2art(f"Welcome To"))
     print(text2art(f"WAATT"))
-    print(f'{bcolors.OKCYAN}Starting Watts Accounting and Trading Tool. Running Version {current_version}...')
+    print(f'{bcolors.OKGREEN}Starting Watts Accounting and Trading Tool. Running Version {current_version}...')
     print("Type 'help' for a list of commands.")
 
     CommandLineInterface().run()

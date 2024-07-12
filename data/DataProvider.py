@@ -29,4 +29,4 @@ class DataProvider:
 
     
     def get_book(self,ticker):
-        return
+        return get_

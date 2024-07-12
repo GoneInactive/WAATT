@@ -1,0 +1,33 @@
+
+from ibapi.client import EClient
+from ibapi.wrapper import EWrapper
+from ibapi.contract import Contract
+
+class IBClient(EWrapper, EClient):
+    def __init__(self):
+        EClient.__init__(self, self)
+
+    def error(self, reqId, errorCode, errorString):
+        print("Error:", errorCode, errorString)
+
+    def tickPrice(self, reqId, tickType, price, attrib):
+        if tickType == 4:  # Last price
+            print("Last price:", price)
+
+def main():
+    client = IBClient()
+    client.connect("127.0.0.1", 7497, 0)  # Connect to Interactive Brokers TWS or IB Gateway
+
+    contract = Contract()
+    contract.symbol = "AAPL"  # Replace with the desired stock symbol
+    contract.secType = "STK"
+    contract.exchange = "SMART"
+    contract.currency = "USD"
+
+    client.reqMarketDataType(1)  # Set market data type to delayed
+    client.reqMktData(1, contract, "", False, False, [])  # Request market data for the contract
+
+    client.run()
+
+if __name__ == "__main__":
+    main()
