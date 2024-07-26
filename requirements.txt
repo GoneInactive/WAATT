@@ -3,3 +3,4 @@ art
 yfinance
 pandas
 python-kraken-sdk
+tabulate
